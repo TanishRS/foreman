@@ -206,6 +206,37 @@ svg circle[fill*="--accent"]{filter:drop-shadow(0 0 6px rgba(196,41,61,.6))}
 #hyperspeed-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 #hyperspeed-bg canvas { display: block; width: 100%; height: 100%; }
 .fm-texture { background-color: transparent; }
+
+/* ===== Mobile responsiveness (<=768px) ===== */
+@media (max-width: 768px) {
+  /* collapse every multi-column section grid to a single column */
+  #top,
+  #services [style*="grid-template-columns"],
+  #process [style*="grid-template-columns"],
+  #work [style*="grid-template-columns"],
+  #about [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+
+  /* tighter gutters + vertical rhythm */
+  #top { padding: 92px 22px 56px !important; gap: 30px !important; }
+  #services, #process, #work, #about { padding: 58px 22px !important; }
+  #contact { padding: 66px 22px !important; }
+  footer[data-screen-label="Footer"] { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; padding: 24px 22px !important; }
+
+  /* scale display type down so it fits the viewport */
+  #top h1 { font-size: clamp(34px, 9.5vw, 52px) !important; }
+  #services h2, #process h2, #work h2, #about h2 { font-size: 32px !important; }
+  #services h2 { margin-bottom: 30px !important; }
+  #contact h2 { font-size: clamp(34px, 10vw, 50px) !important; }
+  #services h3 { font-size: 26px !important; }
+  #process [data-stepnum] { font-size: 52px !important; }
+  .border-glow-inner { padding: 28px !important; }
+
+  /* hero: stack the CTAs full-width, hide the tiny unreadable diagram, calm the backdrop */
+  #top div:has(> a[href="#contact"]) { flex-direction: column !important; align-items: stretch !important; }
+  #top div:has(> a[href="#contact"]) > a { text-align: center !important; }
+  #top > div:last-child { display: none !important; }
+  #top .hero-terminal::after { background: linear-gradient(rgba(10,10,11,.7), rgba(10,10,11,.7)) !important; }
+}
 </style>
 </helmet>
 
@@ -902,7 +933,7 @@ void main(){
     gl.uniform2f(uMouse, 0.5, 0.5);
     gl.uniform1f(uProg, (P.pageLoadAnimation && !reduced) ? 0 : 1);
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(window.devicePixelRatio || 1, window.matchMedia('(max-width: 768px)').matches ? 1 : 1.5);
     const resize = () => {
       const w = Math.max(1, host.offsetWidth), h = Math.max(1, host.offsetHeight);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
@@ -1469,6 +1500,9 @@ class App {
 
 (async () => {
   try {
+    // Phones: skip the heavy Three.js road (perf/battery). Sections fall back to
+    // their dark veil over the page background — still clean, just no road.
+    if (window.matchMedia('(max-width: 768px)').matches) return;
     const container = await whenReady('#hyperspeed-bg');
     const options = { ...OPTIONS, colors: { ...OPTIONS.colors } };
     options.distortion = distortions[options.distortion];
