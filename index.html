@@ -195,7 +195,7 @@ svg circle[fill*="--accent"]{filter:drop-shadow(0 0 6px rgba(196,41,61,.6))}
 .fm-texture > .hero-terminal { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%); z-index: 0; pointer-events: none; overflow: hidden; }
 .hero-terminal canvas { display: block; width: 100%; height: 100%; }
 /* keep the headline crisp over the animated backdrop */
-#top .hero-terminal::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(125% 95% at 30% 42%, rgba(10,10,11,.86) 0%, rgba(10,10,11,.55) 42%, rgba(10,10,11,.4) 100%); }
+#top .hero-terminal::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(125% 95% at 30% 42%, rgba(10,10,11,.85) 0%, rgba(10,10,11,.45) 42%, rgba(10,10,11,.18) 100%); }
 </style>
 </helmet>
 
@@ -319,10 +319,6 @@ svg circle[fill*="--accent"]{filter:drop-shadow(0 0 6px rgba(196,41,61,.6))}
           <text x="536" y="381" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8A8A93">log row</text>
         </g>
       </svg>
-      <!-- scanning sweep, one pass per cycle -->
-      <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;width:12%;height:100%;background:linear-gradient(90deg,transparent,rgba(236,62,84,.11),transparent);transform:translateX(-120%);animation:herosweep 6s linear infinite;animation-play-state:var(--play,running)"></div>
-      </div>
     </div>
     <div style="margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:#8A8A93;display:flex;gap:8px;align-items:center">
       <span style="width:6px;height:6px;background:var(--accent,#7A1F2B);display:inline-block"></span>
@@ -869,7 +865,9 @@ void main(){
     // Foreman-tuned: dim red glyphs, slow, low brightness so the headline stays readable.
     const P = { scale: 1.6, gridMul: [2, 1], digitSize: 1.2, timeScale: 0.3, scanlineIntensity: 0.4,
       glitchAmount: 1, flickerAmount: 0.6, noiseAmp: 1, chromaticAberration: 0, dither: 0, curvature: 0,
-      tint: '#C4293D', mouseReact: true, mouseStrength: 0.3, pageLoadAnimation: true, brightness: 0.3 };
+      tint: '#C4293D', mouseReact: true, mouseStrength: 0.3, pageLoadAnimation: true, brightness: 0.6 };
+    // Breathing hero light: brightness eases dim → bright → dim on a slow loop.
+    const bMin = 0.34, bMax = 0.9, bPeriod = 5.0;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const U = (n) => gl.getUniformLocation(prog, n);
     const t = hexToRgb(P.tint);
@@ -887,7 +885,8 @@ void main(){
     gl.uniform1f(U('uMouseStrength'), P.mouseStrength);
     gl.uniform1f(U('uUseMouse'), (P.mouseReact && !reduced) ? 1 : 0);
     gl.uniform1f(U('uUsePageLoadAnimation'), (P.pageLoadAnimation && !reduced) ? 1 : 0);
-    gl.uniform1f(U('uBrightness'), P.brightness);
+    const uBright = U('uBrightness');
+    gl.uniform1f(uBright, P.brightness);
     const uTime = U('iTime'), uRes = U('iResolution'), uMouse = U('uMouse'), uProg = U('uPageLoadProgress');
     gl.uniform2f(uMouse, 0.5, 0.5);
     gl.uniform1f(uProg, (P.pageLoadAnimation && !reduced) ? 0 : 1);
@@ -920,6 +919,7 @@ void main(){
       if (!running) return;
       this._ftRaf = requestAnimationFrame(frame);
       gl.uniform1f(uTime, (now * 0.001 + offset) * P.timeScale);
+      gl.uniform1f(uBright, bMin + (bMax - bMin) * (0.5 + 0.5 * Math.sin(now * 0.001 * (6.2831853 / bPeriod))));
       if (P.pageLoadAnimation) { if (!loadStart) loadStart = now; gl.uniform1f(uProg, Math.min((now - loadStart) / 2000, 1)); }
       if (P.mouseReact) { sm.x += (mouse.x - sm.x) * 0.08; sm.y += (mouse.y - sm.y) * 0.08; gl.uniform2f(uMouse, sm.x, sm.y); }
       gl.drawArrays(gl.TRIANGLES, 0, 3);
