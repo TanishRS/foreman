@@ -172,7 +172,7 @@ svg circle[fill*="--accent"]{filter:drop-shadow(0 0 6px rgba(196,41,61,.6))}
 .card-nav.open .nav-card:nth-child(2) { transition-delay: 0.14s; }
 .card-nav.open .nav-card:nth-child(3) { transition-delay: 0.22s; }
 .nav-card-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 22px; letter-spacing: .01em; }
-.nav-card-links { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
+.nav-card-links { margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
 .nav-card-link { font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: .03em; color: #B9B9C0; cursor: pointer; text-decoration: none; transition: color 0.25s ease; display: inline-flex; align-items: center; gap: 7px; }
 .nav-card-link:hover { color: #F5F5F3; }
 .nav-card-link-icon { flex: none; opacity: .8; }
@@ -695,21 +695,31 @@ class Component extends DCLogic {
     let open = false;
 
     const calcHeight = () => {
+      // Measure the tallest card's NATURAL height (the original component's
+      // scrollHeight approach + our height:100% cards over-measured, leaving a
+      // big dead gap). Neutralize the forced heights, then read each card.
+      const cards = Array.from(content.querySelectorAll('.nav-card'));
       const prev = {
         v: content.style.visibility, p: content.style.pointerEvents,
         pos: content.style.position, h: content.style.height,
       };
-      content.style.visibility = 'visible';
-      content.style.pointerEvents = 'auto';
+      const cardPrevH = cards.map((c) => c.style.height);
+      content.style.visibility = 'hidden';
+      content.style.pointerEvents = 'none';
       content.style.position = 'static';
       content.style.height = 'auto';
-      const contentHeight = content.scrollHeight;
+      // Cards default to height:100% (fill the bar) — neutralize so they size to
+      // content, otherwise the measurement over-reads and leaves a dead gap.
+      cards.forEach((c) => { c.style.height = 'auto'; });
+      // offsetHeight includes the content's own padding and is correct for both
+      // layouts: desktop row → tallest card; mobile column → summed cards.
+      const contentH = content.offsetHeight;
       content.style.visibility = prev.v;
       content.style.pointerEvents = prev.p;
       content.style.position = prev.pos;
       content.style.height = prev.h;
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      return isMobile ? 60 + contentHeight + 16 : 260;
+      cards.forEach((c, i) => { c.style.height = cardPrevH[i]; });
+      return 60 + contentH;
     };
 
     const setOpen = (o) => {
