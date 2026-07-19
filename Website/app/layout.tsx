@@ -17,9 +17,9 @@ const plex = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Foreman — AI Automation Studio',
+  title: 'Foreman | AI Automation Studio',
   description:
-    'Foreman builds custom n8n workflows and the web systems around them — the unglamorous plumbing that saves you hours every week. Discovery first, always.',
+    'Foreman builds custom n8n workflows and the web systems around them, the unglamorous plumbing that saves you hours every week. Discovery first, always.',
 };
 
 export default function RootLayout({

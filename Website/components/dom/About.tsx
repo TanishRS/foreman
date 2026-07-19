@@ -89,7 +89,7 @@ export default function About() {
         >
           <p>
             Foreman is a solo studio. When you hire it, you get the person who
-            scopes the work, builds it, and answers when something breaks — not
+            scopes the work, builds it, and answers when something breaks. Not
             an account manager relaying messages to a team you&apos;ll never
             meet.
           </p>
@@ -97,7 +97,7 @@ export default function About() {
             The studio exists because most small businesses don&apos;t need an
             &quot;AI transformation.&quot; They need three or four tedious
             processes to stop eating their week. That&apos;s a plumbing job,
-            and it starts with understanding the pipes —{' '}
+            and it starts with understanding the pipes,{' '}
             <span className="ink">which is why discovery always comes first.</span>
           </p>
           <p>

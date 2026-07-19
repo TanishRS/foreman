@@ -18,12 +18,12 @@ export default function SocialProof() {
           / PROOF
         </div>
         <Reveal className="display display--h2 reveal-lines">
-          Telemetry, not testimonials.
+          No fake numbers here.
         </Reveal>
         <p className="lead" data-reveal style={{ margin: '12px 0 48px' }}>
-          This panel reads from the same workflows the studio runs for clients.
-          Nothing here will ever be invented — if a number isn&apos;t live yet,
-          it stays dark.
+          This panel is meant to show real stats pulled from live client
+          workflows. Until there&apos;s public data to show, it stays honest
+          and empty instead of making something up.
         </p>
         <div className="crt" data-reveal>
           <div
@@ -31,23 +31,24 @@ export default function SocialProof() {
             style={{ display: 'flex', alignItems: 'center', gap: 10 }}
           >
             <span className="led" />
-            <span>CONTROL ROOM — LIVE WORKFLOW TELEMETRY</span>
+            <span>LIVE WORKFLOW STATS</span>
           </div>
           <div
             className="display"
             style={{ fontSize: 'clamp(26px, 3.2vw, 40px)', marginTop: 22, maxWidth: '28ch' }}
           >
-            Awaiting first public reference — ask me for one privately.
+            No public numbers to share yet. Ask me directly and I&apos;ll tell
+            you what&apos;s working.
           </div>
           <div className="crt__grid">
             {SLOTS.map((s) => (
               <div className="crt__stat" key={s}>
                 <div className="mono-tiny">{s}</div>
                 <div className="val" aria-label="not yet connected">
-                  ——
+                  N/A
                 </div>
                 <div className="mono-tiny" style={{ marginTop: 8 }}>
-                  COMES ONLINE WITH PRODUCTION STATS
+                  COMES ONLINE WITH REAL PRODUCTION DATA
                 </div>
               </div>
             ))}

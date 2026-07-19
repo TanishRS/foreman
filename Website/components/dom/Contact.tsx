@@ -43,15 +43,15 @@ export default function Contact() {
           Tell me what&apos;s eating your week.
         </Reveal>
         <p className="lead" data-reveal style={{ fontSize: 16, maxWidth: '52ch' }}>
-          A 30-minute discovery call. You describe how the work flows today;
-          I&apos;ll tell you honestly what&apos;s worth automating — and what
-          isn&apos;t.
+          A 30-minute discovery call. You describe how the work flows today,
+          and I&apos;ll tell you honestly what&apos;s worth automating and
+          what isn&apos;t.
         </p>
 
         <form className="intake" data-reveal onSubmit={submit}>
           <label className="mono-tiny" htmlFor="intake-msg">
-            OR JUST WRITE IT DOWN — THIS FIELD FEEDS THE SAME INTAKE WORKFLOW
-            SHOWN IN FIG 01
+            OR JUST WRITE IT DOWN. IT GOES INTO THE SAME INTAKE WORKFLOW
+            SHOWN ABOVE
           </label>
           <textarea
             id="intake-msg"

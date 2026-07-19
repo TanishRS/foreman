@@ -61,7 +61,7 @@ export default function Services() {
               />
               <circle cx="100" cy="100" r="4" fill="var(--accent-mid)" />
             </svg>
-            <div className="mono-label">01 — AUTOMATION BUILDS</div>
+            <div className="mono-label">01 / AUTOMATION BUILDS</div>
             <h3
               className="display"
               style={{ fontSize: 34 }}
@@ -70,8 +70,9 @@ export default function Services() {
             </h3>
             <p className="lead">
               Lead intake, quote follow-ups, invoicing chases, report
-              generation, AI-assisted triage — wired into the tools you already
-              use. Built on n8n so you own it, documented so you understand it.
+              generation, AI-assisted triage, all wired into the tools you
+              already use. Built on n8n so you own it, documented so you
+              understand it.
             </p>
             <div className="chips" style={{ marginTop: 'auto', paddingTop: 10 }}>
               <span className="chip">n8n</span>
@@ -136,14 +137,15 @@ export default function Services() {
                 strokeWidth="1.5"
               />
             </svg>
-            <div className="mono-label">02 — WEB SYSTEMS</div>
+            <div className="mono-label">02 / WEB SYSTEMS</div>
             <h3 className="display" style={{ fontSize: 34 }}>
               Sites &amp; internal tools
             </h3>
             <p className="lead">
               Fast sites, booking and intake forms, dashboards, and small
-              internal tools — built to feed your automations, not sit next to
-              them. One system, not a pile of disconnected apps.
+              internal tools, built to feed your automations instead of
+              sitting next to them. One system, not a pile of disconnected
+              apps.
             </p>
             <div className="chips" style={{ marginTop: 'auto', paddingTop: 10 }}>
               <span className="chip">sites + landing pages</span>

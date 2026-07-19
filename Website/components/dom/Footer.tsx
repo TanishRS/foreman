@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="footer">
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span className="sq" />
-        <span>FOREMAN — AI AUTOMATION STUDIO</span>
+        <span>FOREMAN / AI AUTOMATION STUDIO</span>
       </div>
       <div>DISCOVERY FIRST, ALWAYS. © 2026</div>
     </footer>

@@ -38,8 +38,9 @@ export default function TechStack() {
           Built with parts you can inspect.
         </Reveal>
         <p className="lead" data-reveal style={{ margin: '12px 0 48px' }}>
-          The same egalitarian shelf every build draws from — tools you can
-          own, read, and replace. Flip a plate to see what it does here.
+          These are the tools every build draws from, things you can own,
+          read, and swap out if you want to. Flip a plate to see what each one
+          actually does here.
         </p>
         <ul className="plates" style={{ listStyle: 'none' }} data-reveal>
           {TOOLS.map((t, i) => (
@@ -57,15 +58,15 @@ export default function TechStack() {
               <div className="plate__inner">
                 <div className="plate__face plate__face--front">{t.name}</div>
                 <div className="plate__face plate__face--back">
-                  {t.name} — {t.use}
+                  {t.name}: {t.use}
                 </div>
               </div>
             </li>
           ))}
         </ul>
         <p className="mono-tiny" data-reveal style={{ marginTop: 24 }}>
-          ALL MARKS BELONG TO THEIR OWNERS — LISTED AS TOOLS USED, NOT
-          ENDORSEMENTS.
+          ALL TRADEMARKS BELONG TO THEIR OWNERS. LISTED HERE AS TOOLS USED,
+          NOT ENDORSEMENTS.
         </p>
       </div>
     </section>

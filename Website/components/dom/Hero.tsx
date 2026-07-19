@@ -42,7 +42,7 @@ export default function Hero() {
           AI automation &amp; web systems for small businesses.
         </Reveal>
         <p className="lead" style={{ fontSize: 17, lineHeight: 1.65, maxWidth: '44ch' }}>
-          Foreman builds custom n8n workflows and the web systems around them —
+          Foreman builds custom n8n workflows and the web systems around them,
           the unglamorous plumbing that saves you hours every week.{' '}
           <span className="ink">Discovery first, always:</span> we map the
           problem before a single node gets wired.
@@ -71,7 +71,7 @@ export default function Hero() {
               display: 'inline-block',
             }}
           />
-          <span>FIG 01 — LEAD INTAKE WORKFLOW, SIMPLIFIED</span>
+          <span>FIG 01 / LEAD INTAKE WORKFLOW, SIMPLIFIED</span>
         </div>
       </div>
     </section>

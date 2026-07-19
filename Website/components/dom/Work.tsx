@@ -25,7 +25,7 @@ const BUILDS = [
     live: false,
     status: 'IN PROGRESS',
     title: 'Site + booking system',
-    body: 'A fast one-page site with an intake form that feeds bookings straight into calendar and CRM — no copy-pasting between tabs. This site is built on the same stack.',
+    body: 'A fast one-page site with an intake form that feeds bookings straight into calendar and CRM, no copy-pasting between tabs. This site is built on the same stack.',
     stack: 'web · forms · calendar · crm',
   },
 ];

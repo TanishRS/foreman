@@ -19,7 +19,7 @@ const STEPS = [
   {
     num: '01',
     title: 'DISCOVERY',
-    body: "We map how your business actually runs — where time leaks, where leads die, what's worth automating and what isn't. You get a written plan with scope and price, whether or not we build together.",
+    body: "We map how your business actually runs: where time leaks, where leads die, what's worth automating and what isn't. You get a written plan with scope and price, whether or not we build together.",
   },
   {
     num: '02',
@@ -105,7 +105,7 @@ export default function Process() {
         </Reveal>
         <p className="lead" data-reveal style={{ margin: '12px 0 48px' }}>
           Every engagement runs in this order. No build starts before discovery
-          is done — that&apos;s the whole point.
+          is done. That&apos;s the whole point.
         </p>
         <div className="process-steps">
           {STEPS.map((s) => (
